@@ -6,6 +6,14 @@ The skill packages instructions, not the Xean runtime, Copilot SDK or paper
 release tooling. Report unavailable prerequisites instead of inventing an
 installer or a built-in Copilot research constructor.
 
+Use `compatibility.md` to select the controlling host's installation and
+invocation. The example below is a Copilot **review backend**, not a
+requirement that the controlling agent also run in Copilot.
+
+Read [operations.md](operations.md) before retrying a campaign or switching
+backends. It contains the current state-reconciliation and Windows UTF-8
+rules; the historical sequence below is not authority to replay an operation.
+
 ## Source and path resolution
 
 - Source: `algk\XEAN_WORKFLOW.md` in the `algk-xean-improvements-20261003`
@@ -16,10 +24,20 @@ installer or a built-in Copilot research constructor.
   `algk` directory, not from this skill's `references` directory.
 - Original example root on the verified machine:
   `C:\Users\andyzeng\.config\superpowers\worktrees\singularfol\algk-xean-improvements-20261003\algk`.
-- An earlier qualified adapter is also preserved read-only in this repository
-  at `algk\reviews\2026-10-03-xean-copilot-verification`. Never execute its
+- The originating project is
+  [andyzengmath/singularfol](https://github.com/andyzengmath/singularfol).
+  An earlier qualified adapter was preserved read-only there at
+  `algk\reviews\2026-10-03-xean-copilot-verification`. Never execute its
   already-used campaign IDs or change its seal. Copy only needed adapter
   sources into a fresh task-owned namespace and bind the resulting runtime.
+- The later packet in that originating project,
+  `reviews\2026-10-04-xean-copilot-affine-core` also preserves the qualified
+  Copilot adapter, fresh web/PDF qualification receipts, numbered scope
+  assessment and stable database/seal handling. Resolve this path from the
+  originating repository root, not `algk` or an installed skill directory.
+  These external historical packets are not bundled runtime files or
+  guaranteed to exist in a standalone skill checkout. They are immutable
+  examples, not runnable new campaigns or prerequisite mathematical verdicts.
 - Treat all versions, machine paths, model observations, capacities, article
   editions and campaign IDs below as historical example data.
 
@@ -269,12 +287,18 @@ INCONCLUSIVE; that provenance check is still not proof verification.
 Read event streams with **LF-only JSONL framing**:
 
 ```python
+raw = path.read_bytes()
+text = raw.decode("utf-8")
 events = [json.loads(line) for line in text.split("\n") if line.strip()]
 ```
 
 Do not use Python `splitlines()`: U+0085 and other Unicode line separators
 can legitimately occur *inside* one JSON string and would split an event.
 Preserve the original UTF-8 bytes and check receipt hashes before parsing.
+Read standalone JSON with explicit `encoding="utf-8"` as well; Windows'
+default code page is not the review encoding. Configure local Python console
+output explicitly as described in `operations.md`. Fix local decoding or
+printing errors locally, without repeating a completed provider request.
 
 For the follow-up, `assess.ts` reparses the native reports, checks the
 seven unique scope rows and records actual model/effort/context events.
